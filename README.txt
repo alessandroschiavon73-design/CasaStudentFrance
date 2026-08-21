@@ -9,7 +9,8 @@ CONTENUTO
 - Contratto dati comune in database-contract.json.
 - Procedura di pubblicazione predisposta per registrazione/verifica email.
 - Footer europeo centralizzato in assets/js/config.js.
-- Cartina nazionale vettoriale con città universitarie cliccabili.
+- Cartina nazionale con città universitarie cliccabili; per la Francia, illustrazione con monumenti rappresentativi coordinata al portale italiano.
+- Elenco esteso dei quartieri per tutte le otto città, derivato dallo snapshot geografico incluso e pronto per la tabella districts del database comune.
 - Bandiere SVG locali e collegamenti attivi tra i sei domini della rete.
 - Statistiche first-party predisposte verso POST /api/v1/events, disattivate per impostazione predefinita.
 
