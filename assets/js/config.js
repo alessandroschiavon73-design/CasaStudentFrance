@@ -46,7 +46,7 @@ window.STUDENTBNB_CONFIG = {
       "code": "DE",
       "label": "Deutschland",
       "flag": "🇩🇪",
-      "url": null
+      "url": "https://student-bnb.de/"
     },
     {
       "code": "PL",

@@ -69,10 +69,14 @@
       container.innerHTML = "";
       cfg.networkSites.forEach((site) => {
         const a = document.createElement("a");
-        a.innerHTML = `<span aria-hidden="true">${site.flag}</span>${site.label}`;
+        const flagCode = String(site.code || "").toLowerCase();
+        a.innerHTML = `<img class="network-flag" src="assets/img/flag-${flagCode}.svg" alt=""><span>${site.label}</span><span class="network-open" aria-hidden="true">↗</span>`;
         if (site.code === cfg.countryCode) {
           a.href = "index.html";
           a.setAttribute("aria-current", "page");
+          a.classList.add("network-current");
+          const openMark = q(".network-open", a);
+          if (openMark) openMark.textContent = "✓";
         } else if (site.url) {
           a.href = site.url;
           a.target = "_blank";

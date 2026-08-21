@@ -9,6 +9,8 @@ CONTENUTO
 - Contratto dati comune in database-contract.json.
 - Procedura di pubblicazione predisposta per registrazione/verifica email.
 - Footer europeo centralizzato in assets/js/config.js.
+- Cartina nazionale vettoriale con città universitarie cliccabili.
+- Bandiere SVG locali e collegamenti attivi tra i sei domini della rete.
 - Statistiche first-party predisposte verso POST /api/v1/events, disattivate per impostazione predefinita.
 
 COLLEGAMENTO AL BACKEND COMUNE
@@ -28,10 +30,10 @@ RETE STUDENTBNB
 - Spagna: https://studentbnb.es/
 - Portogallo: https://studentbnb.pt/
 - Francia: https://studentbnb.fr/
-- Germania: DOMINIO ESATTO DA INSERIRE (studentbnb.de risulta occupato)
+- Germania: https://student-bnb.de/
 - Polonia: https://studentbnb.pl/
 
-Per il dominio tedesco, aggiornare una sola volta networkSites e domain in assets/js/config.js; aggiornare inoltre database-contract.json, sitemap e footer delle versioni IT/ES/PT/FR/PL.
+I collegamenti tra i siti nazionali sono centralizzati in networkSites dentro assets/js/config.js.
 
 PRIMA DELLA PUBBLICAZIONE
 - Completare i dati del titolare/responsabile nella pagina privacy.

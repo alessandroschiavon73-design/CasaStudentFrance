@@ -1,0 +1,8 @@
+STUDENTBNB FR - CREDITI CARTOGRAFICI
+
+Cartina nazionale: https://commons.wikimedia.org/wiki/File:France_location_map.svg
+Autore: NordNordWest / Wikimedia Commons
+Licenza: Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0), disponibile anche secondo i termini GFDL indicati nella pagina sorgente.
+Utilizzo nel portale: file rinominato country-map.svg e visualizzato con indicatori HTML separati per le città universitarie.
+
+Le bandiere nazionali sono icone SVG geometriche realizzate per l'interfaccia StudentBnB.
