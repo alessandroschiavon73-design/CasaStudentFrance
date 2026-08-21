@@ -1,0 +1,151 @@
+{
+  "schemaVersion": "1.2",
+  "scope": "EU",
+  "countryFrontend": {
+    "domain": "studentbnb.fr",
+    "countryCode": "FR",
+    "locale": "fr-FR",
+    "currency": "EUR"
+  },
+  "recordIsolation": "Every market record requires country_code; access policies and analytics must filter by it.",
+  "entities": {
+    "countries": [
+      "code",
+      "name",
+      "locale",
+      "currency",
+      "domain"
+    ],
+    "cities": [
+      "id",
+      "country_code",
+      "slug",
+      "name",
+      "region",
+      "hero_image_url",
+      "active"
+    ],
+    "districts": [
+      "id",
+      "city_id",
+      "slug",
+      "name",
+      "active"
+    ],
+    "users": [
+      "id",
+      "email",
+      "email_verified_at",
+      "display_name",
+      "phone",
+      "country_code",
+      "created_at"
+    ],
+    "email_verifications": [
+      "id",
+      "email",
+      "token_hash",
+      "intent",
+      "expires_at",
+      "confirmed_at",
+      "country_code"
+    ],
+    "listings": [
+      "id",
+      "country_code",
+      "city_id",
+      "district_id",
+      "publisher_user_id",
+      "type",
+      "arrangement",
+      "price",
+      "currency",
+      "expenses_included",
+      "expenses_amount",
+      "deposit",
+      "available_from",
+      "minimum_stay",
+      "status",
+      "created_at",
+      "updated_at"
+    ],
+    "listing_images": [
+      "id",
+      "listing_id",
+      "url",
+      "position",
+      "is_cover"
+    ],
+    "student_requests": [
+      "id",
+      "country_code",
+      "city_id",
+      "user_id",
+      "type",
+      "budget_max",
+      "currency",
+      "available_from",
+      "available_to",
+      "status",
+      "created_at",
+      "updated_at"
+    ],
+    "consent_records": [
+      "id",
+      "user_id",
+      "country_code",
+      "document_key",
+      "document_version",
+      "granted_at",
+      "withdrawn_at"
+    ],
+    "reports": [
+      "id",
+      "reporter_user_id",
+      "entity_type",
+      "entity_id",
+      "reason",
+      "status",
+      "created_at"
+    ],
+    "analytics_events": [
+      "id",
+      "country_code",
+      "event_name",
+      "path",
+      "anonymous_session_id",
+      "properties_json",
+      "occurred_at"
+    ]
+  },
+  "suggestedEndpoints": [
+    "POST /api/v1/auth/email/start",
+    "POST /api/v1/auth/email/confirm",
+    "GET /api/v1/countries/{countryCode}/cities",
+    "GET /api/v1/listings?country=FR&city_id={cityId}",
+    "GET /api/v1/listings/{id}",
+    "POST /api/v1/listings",
+    "GET /api/v1/student-requests?country=FR",
+    "POST /api/v1/student-requests",
+    "POST /api/v1/reports",
+    "POST /api/v1/events"
+  ],
+  "statusFlows": {
+    "listing": [
+      "draft",
+      "email_pending",
+      "pending_review",
+      "published",
+      "suspended",
+      "expired"
+    ],
+    "student_request": [
+      "draft",
+      "email_pending",
+      "pending_review",
+      "published",
+      "suspended",
+      "expired"
+    ]
+  }
+}

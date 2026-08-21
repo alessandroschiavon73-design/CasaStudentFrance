@@ -1,0 +1,16 @@
+CHECKLIST PRE-LANCIO - STUDENTBNB FR
+
+[ ] Dominio, DNS, HTTPS, redirect www/non-www
+[ ] Dati legali del titolare e contatto privacy
+[ ] Cookie/analytics configurati e documentati
+[ ] Endpoint API e CORS corretti
+[ ] Invio email con SPF, DKIM e DMARC
+[ ] Token email monouso, scadenza e rate limiting
+[ ] Test registrazione -> conferma -> moderazione -> pubblicazione
+[ ] Test richiesta studente -> conferma -> moderazione -> pubblicazione
+[ ] Test segnalazioni e sospensione contenuti
+[ ] Isolamento server-side country_code = FR
+[ ] Backup, log accessi e piano di cancellazione dati
+[ ] Controllo link rete StudentBnB in tutti i domini
+[ ] Test responsive e accessibilità tastiera
+[ ] Canonical, sitemap.xml, robots.txt e Search Console
