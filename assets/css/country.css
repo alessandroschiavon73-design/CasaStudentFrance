@@ -123,6 +123,17 @@
   max-height:none;
   overflow:visible;
 }
+.map-city-marker.has-landmark{
+  background:transparent;
+  border:0;
+  box-shadow:none;
+}
+.map-city-marker.has-landmark::after{display:none}
+.map-city-marker.has-landmark:hover,
+.map-city-marker.has-landmark:focus{
+  transform:translate(-50%,-50%);
+  box-shadow:none;
+}
 .map-city-marker.has-landmark .map-landmark-icon{
   position:absolute;
   left:calc(50% + var(--landmark-offset-x,0px));
@@ -137,7 +148,8 @@
   object-fit:contain;
   opacity:.98;
   filter:drop-shadow(0 3px 4px rgba(45,65,85,.18));
-  pointer-events:none;
+  pointer-events:auto;
+  cursor:pointer;
   user-select:none;
 }
 .map-city-marker.has-landmark:hover .map-landmark-icon,
@@ -145,11 +157,11 @@
   opacity:1;
   filter:drop-shadow(0 4px 5px rgba(45,65,85,.24));
 }
-.map-city-marker[href*="city=nancy"]{--landmark-height:74px;--landmark-offset-x:-16px}
-.map-city-marker[href*="city=strasbourg"]{--landmark-height:96px;--landmark-offset-x:24px}
-.map-city-marker[href*="city=grenoble"]{--landmark-height:84px;--landmark-offset-x:24px}
-.map-city-marker[href*="city=nice"]{--landmark-height:68px;--landmark-offset-x:24px}
-.map-city-marker[href*="city=marseille-aix-en-provence"]{--landmark-height:84px;--landmark-offset-x:-20px}
+.map-city-marker[href*="city=nancy"]{--landmark-height:74px;--landmark-offset-x:-24px}
+.map-city-marker[href*="city=strasbourg"]{--landmark-height:96px;--landmark-offset-x:30px}
+.map-city-marker[href*="city=grenoble"]{--landmark-height:84px;--landmark-offset-x:30px}
+.map-city-marker[href*="city=nice"]{--landmark-height:68px;--landmark-offset-x:28px}
+.map-city-marker[href*="city=marseille-aix-en-provence"]{--landmark-height:84px;--landmark-offset-x:-26px}
 
 @media(max-width:820px){
   .country-market-map{padding:0}
@@ -166,9 +178,9 @@
     bottom:calc(100% + 1px);
     transform:translateX(-50%) scale(.62);
   }
-  .map-city-marker[href*="city=nancy"]{--landmark-offset-x:-7px}
-  .map-city-marker[href*="city=strasbourg"]{--landmark-offset-x:9px}
-  .map-city-marker[href*="city=grenoble"]{--landmark-offset-x:7px}
-  .map-city-marker[href*="city=nice"]{--landmark-offset-x:8px}
-  .map-city-marker[href*="city=marseille-aix-en-provence"]{--landmark-offset-x:-8px}
+  .map-city-marker[href*="city=nancy"]{--landmark-offset-x:-10px}
+  .map-city-marker[href*="city=strasbourg"]{--landmark-offset-x:13px}
+  .map-city-marker[href*="city=grenoble"]{--landmark-offset-x:10px}
+  .map-city-marker[href*="city=nice"]{--landmark-offset-x:11px}
+  .map-city-marker[href*="city=marseille-aix-en-provence"]{--landmark-offset-x:-11px}
 }
