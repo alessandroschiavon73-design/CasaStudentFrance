@@ -95,3 +95,9 @@
   .market-map-canvas{padding:10px 0 14px}
   .market-map-visual{width:100%;max-height:none}
 }
+
+/* Secondary French market markers — 2026-08-24 */
+.map-city-secondary{width:13px;height:13px;border-width:2px}
+.map-city-secondary:after{inset:-6px}
+.map-city-secondary span{opacity:0;visibility:hidden;pointer-events:none;transition:.16s opacity}
+.map-city-secondary:hover span,.map-city-secondary:focus span{opacity:1;visibility:visible}
