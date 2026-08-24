@@ -67,6 +67,7 @@
 .country-market-map{
   height:auto;
   min-height:0;
+  aspect-ratio:auto;
   padding:24px 24px 22px;
 }
 .market-map-canvas{
