@@ -7,6 +7,13 @@
   const q = (selector, root = document) => root.querySelector(selector);
   const qa = (selector, root = document) => Array.from(root.querySelectorAll(selector));
   const text = (key, fallback = "") => (cfg.ui && cfg.ui[key]) || fallback || key;
+  const demoText = {
+    FR:{badge:"Exemple démonstratif",contact:"Contacts désactivés pour cet exemple",profiles:"Profils d’exemple"},
+    DE:{badge:"Demobeispiel",contact:"Kontakte sind für dieses Beispiel deaktiviert",profiles:"Beispielprofile"},
+    PL:{badge:"Przykład demonstracyjny",contact:"Kontakt jest wyłączony w tym przykładzie",profiles:"Profile przykładowe"}
+  }[cfg.countryCode];
+  (data.listings || []).forEach(record => { record.is_demo = true; });
+  (data.studentRequests || []).forEach(record => { record.is_demo = true; });
 
   function toast(message) {
     const node = q("#toast");
@@ -147,7 +154,7 @@
     article.dataset.price = record.price;
     article.innerHTML = `
       <a href="${cfg.routes.listing}?id=${encodeURIComponent(record.id)}"><img class="listing-image" src="${record.image}" alt="${record.title}"></a>
-      <div class="listing-main"><div class="listing-title-row"><h3><a href="${cfg.routes.listing}?id=${encodeURIComponent(record.id)}">${record.title}</a></h3><span class="verification-badge">✓ ${text("verifiedEmail")}</span></div><div class="listing-meta"><span>⌖ ${city.name} · ${record.district_name}</span><span>▣ ${record.available_from}</span></div><div class="listing-submeta"><span>${record.arrangement}</span><span>${record.minimum_stay}</span></div></div>
+      <div class="listing-main"><div class="listing-title-row"><h3><a href="${cfg.routes.listing}?id=${encodeURIComponent(record.id)}">${record.title}</a></h3>${record.is_demo ? `<span class="demo-badge">${demoText.badge}</span>` : `<span class="verification-badge">✓ ${text("verifiedEmail")}</span>`}</div><div class="listing-meta"><span>⌖ ${city.name} · ${record.district_name}</span><span>▣ ${record.available_from}</span></div><div class="listing-submeta"><span>${record.arrangement}</span><span>${record.minimum_stay}</span></div></div>
       <div class="listing-price"><div class="price">${formatMoney(record.price)} <small>/${text("monthShort")}</small></div><span class="expenses-badge ${record.expenses_included ? "included" : "excluded"}">${record.expenses_included ? text("expensesIncluded") : text("expensesExcluded")}</span></div>
       <div class="listing-actions"><button class="favorite-button" type="button" aria-label="${text("favorite")}">♡</button></div>`;
     q(".favorite-button", article).addEventListener("click", (event) => {
@@ -171,6 +178,8 @@
     q("#city-name").textContent = selectedCity.name;
     q("#city-region").textContent = selectedCity.region;
     q("#city-description").textContent = selectedCity.description;
+    document.title = `${selectedCity.name} | StudentBnB`;
+    window.StudentBnBSEO?.update({title:document.title,description:selectedCity.description});
     const hero = q("#city-hero-bg");
     if (hero) hero.style.backgroundImage = `url('${selectedCity.image}')`;
     if (params.get("type") && q("#filter-type")) q("#filter-type").value = params.get("type");
@@ -198,6 +207,10 @@
     const id = new URLSearchParams(location.search).get("id");
     const record = [...data.listings, ...api.read("listings", [])].find((item) => item.id === id) || data.listings[0];
     const city = cityById(record.city_id);
+    const robots = document.head.querySelector('meta[name="robots"]');
+    if (robots && record.is_demo) robots.content = "noindex,follow";
+    document.title = `${record.title} | StudentBnB`;
+    window.StudentBnBSEO?.update({title:document.title,description:record.description});
     q("#listing-title").textContent = record.title;
     q("#listing-place").textContent = `${city.name} · ${record.district_name}`;
     q("#listing-price").textContent = formatMoney(record.price);
@@ -208,7 +221,18 @@
     q("#listing-deposit").textContent = formatMoney(record.deposit || 0);
     q("#listing-main-image").src = record.image;
     qa("[data-gallery-image]").forEach((img, index) => { img.src = record.images[index % record.images.length]; });
-    q("#contact-owner").addEventListener("click", () => {
+    const verifiedBadge = q(".verification-badge", q("#listing-detail"));
+    if (record.is_demo && verifiedBadge) {
+      verifiedBadge.className = "demo-badge";
+      verifiedBadge.textContent = demoText.badge;
+    }
+    const contactOwner = q("#contact-owner");
+    if (record.is_demo) {
+      contactOwner.disabled = true;
+      contactOwner.textContent = demoText.contact;
+      return;
+    }
+    contactOwner.addEventListener("click", () => {
       const user = api.read("user");
       if (!user || !user.email_verified_at) {
         q("[data-login]").click();
@@ -289,8 +313,9 @@
         const city = cityById(record.city_id);
         const card = document.createElement("article");
         card.className = "simple-student-card";
-        card.innerHTML = `<div class="student-card-top"><div style="display:flex;align-items:center;gap:12px"><span class="student-initial">${record.name.charAt(0)}</span><div><h2>${record.name}</h2><small>${city.name} · ${record.course}</small></div></div><span class="student-budget">≤ ${formatMoney(record.budget_max)}</span></div><div class="record-meta"><span>${record.type}</span><span>${record.available_from}</span><span>${record.languages}</span></div><p>${record.bio}</p><button class="btn btn-white" type="button" data-student-contact>${text("contactStudent")}</button>`;
+        card.innerHTML = `<div class="student-card-top"><div style="display:flex;align-items:center;gap:12px"><span class="student-initial">${record.name.charAt(0)}</span><div><h2>${record.name}</h2><small>${city.name} · ${record.course}</small></div></div><span class="student-budget">≤ ${formatMoney(record.budget_max)}</span></div>${record.is_demo ? `<span class="demo-badge">${demoText.badge}</span>` : ""}<div class="record-meta"><span>${record.type}</span><span>${record.available_from}</span><span>${record.languages}</span></div><p>${record.bio}</p><button class="btn btn-white" type="button" data-student-contact${record.is_demo ? " disabled" : ""}>${record.is_demo ? demoText.contact : text("contactStudent")}</button>`;
         q("[data-student-contact]", card).addEventListener("click", () => {
+          if (record.is_demo) return;
           const user = api.read("user");
           if (!user || !user.email_verified_at) q("[data-login]").click(); else toast(text("contactProtected"));
         });

@@ -369,7 +369,7 @@ button{cursor:pointer}
 .footer-bottom{border-top:1px solid #36393d;margin-top:30px;padding-top:18px;color:#989da3;font-size:13px;display:flex;justify-content:space-between}
 
 /* Header responsive: the full navigation no longer fits comfortably on tablet/small laptop widths. */
-@media(max-width:1280px){
+@media(max-width:1400px){
   .menu-button{display:block;margin-left:auto}
   .main-nav{position:absolute;display:none;top:84px;left:0;right:0;background:#fff;padding:18px 22px;box-shadow:var(--shadow);flex-direction:column;align-items:stretch;gap:8px}
   .main-nav.open{display:flex}
