@@ -29,7 +29,7 @@ VERIFICA EMAIL
 RETE STUDENTBNB
 - Italia: https://studentbnb.it/
 - Spagna: https://studentbnb.es/
-- Portogallo: https://studentbnb.pt/
+- Portogallo: sospeso (nessun dominio ufficiale attivo)
 - Francia: https://studentbnb.fr/
 - Germania: https://student-bnb.de/
 - Polonia: https://studentbnb.pl/
