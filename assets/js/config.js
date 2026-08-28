@@ -19,7 +19,7 @@ window.STUDENTBNB_CONFIG = {"brandLine":"Base & Belong","countryCode":"FR","coun
     if (fp) fp.textContent = "CasaStudent est dédié au logement étudiant de moyenne et longue durée : plusieurs mois, un semestre ou une année universitaire. Il n'est pas conçu pour les courts séjours touristiques.";
     meta("name", "robots", "index,follow,max-image-preview:large"); meta("property", "og:site_name", "CasaStudent — Base & Belong"); meta("property", "og:type", "website"); meta("name", "twitter:card", "summary_large_image"); updateSeo(); addStructuredData();
     const page = location.pathname.endsWith("/") ? "" : location.pathname.split("/").pop(); if (!page || page === "index.html") sites.forEach(site => link("alternate", site.url, site.code.toLowerCase()));
-    const box = document.querySelector(".footer-international .footer-country-links"); if (box) box.innerHTML = sites.map(site => `<a href="${site.url}"${site.code === cfg.countryCode ? ' aria-current="page"' : ' target="_blank" rel="noopener"'}><span aria-hidden="true">${site.flag}</span> ${site.label}</a>`).join("");
+    const box = document.querySelector(".footer-international .footer-country-links"); if (box) box.innerHTML = sites.map(site => `<a href="${site.url}"${site.code === cfg.countryCode ? ' aria-current="page"' : ''}><span aria-hidden="true">${site.flag}</span> ${site.label}</a>`).join("");
     alignMap();
   }
   window.StudentBnBSEO = { update: updateSeo };
