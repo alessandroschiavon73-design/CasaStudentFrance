@@ -176,7 +176,7 @@
     q("#city-name").textContent = selectedCity.name;
     q("#city-region").textContent = selectedCity.region;
     q("#city-description").textContent = selectedCity.description;
-    document.title = `${selectedCity.name} | StudentBnB`;
+    document.title = `${selectedCity.name} | CasaStudent`;
     window.StudentBnBSEO?.update({title:document.title,description:selectedCity.description});
     const hero = q("#city-hero-bg");
     if (hero) hero.style.backgroundImage = `url('${selectedCity.image}')`;
@@ -207,7 +207,7 @@
     const city = cityById(record.city_id);
     const robots = document.head.querySelector('meta[name="robots"]');
     if (robots && record.is_demo) robots.content = "noindex,follow";
-    document.title = `${record.title} | StudentBnB`;
+    document.title = `${record.title} | CasaStudent`;
     window.StudentBnBSEO?.update({title:document.title,description:record.description});
     q("#listing-title").textContent = record.title;
     q("#listing-place").textContent = `${city.name} · ${record.district_name}`;

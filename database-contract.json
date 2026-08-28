@@ -2,7 +2,7 @@
   "schemaVersion": "1.2",
   "scope": "EU",
   "countryFrontend": {
-    "domain": "studentbnb.fr",
+    "domain": "casastudent.fr",
     "countryCode": "FR",
     "locale": "fr-FR",
     "currency": "EUR"

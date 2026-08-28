@@ -19,7 +19,7 @@ Le raccordement à la base de données européenne commune, la gestion des compt
 
 Site officiel
 
-https://studentbnb.fr/
+https://casastudent.fr/
 
 Réseau StudentBnB
 

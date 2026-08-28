@@ -27,12 +27,12 @@ VERIFICA EMAIL
 - Usare token monouso salvati solo come hash, con scadenza breve e rate limiting.
 
 RETE STUDENTBNB
-- Italia: https://studentbnb.it/
-- Spagna: https://studentbnb.es/
+- Italia: https://casastudent.it/
+- Spagna: https://casastudent.es/
 - Portogallo: sospeso (nessun dominio ufficiale attivo)
-- Francia: https://studentbnb.fr/
-- Germania: https://student-bnb.de/
-- Polonia: https://studentbnb.pl/
+- Francia: https://casastudent.fr/
+- Germania: https://casastudent.de/
+- Polonia: https://casastudent.pl/
 
 I collegamenti tra i siti nazionali sono centralizzati in networkSites dentro assets/js/config.js.
 
