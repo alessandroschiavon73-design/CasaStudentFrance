@@ -80,11 +80,13 @@ window.STUDENTBNB_CONFIG = {"brandLine":"Base & Belong","countryCode":"FR","coun
     if (!footer) return;
     const language = (document.documentElement.lang || cfg.locale || "en").slice(0, 2).toLowerCase();
     const labels = headings[language] || headings.en;
+    const casaTitle = labels[0].replace("CasaStudent", "<span>Casa</span><span>Student</span>");
+    const casaLabel = labels[0].replace("CasaStudent", "Casa Student");
     footer.classList.add("dual-portal-footer");
     footer.innerHTML = `
       <section class="portal-family" aria-labelledby="casastudent-network-title">
-        <strong class="portal-family-title" id="casastudent-network-title">${labels[0]}</strong>
-        <nav class="footer-country-links portal-country-links" aria-label="${labels[0]}">${links(casaStudentSites, "casastudent")}</nav>
+        <strong class="portal-family-title" id="casastudent-network-title">${casaTitle}</strong>
+        <nav class="footer-country-links portal-country-links" aria-label="${casaLabel}">${links(casaStudentSites, "casastudent")}</nav>
       </section>
       <section class="portal-family" aria-labelledby="studentbnb-network-title">
         <strong class="portal-family-title" id="studentbnb-network-title">${labels[1]}</strong>
