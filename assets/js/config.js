@@ -102,6 +102,7 @@ window.STUDENTBNB_CONFIG = {"brandLine":"Base & Belong","countryCode":"FR","coun
       .footer-international.dual-portal-footer{display:grid!important;gap:18px!important;align-items:stretch!important}
       .dual-portal-footer .portal-family{display:grid;grid-template-columns:minmax(150px,.3fr) minmax(0,1fr);gap:14px 20px;align-items:start}
       .dual-portal-footer .portal-family+.portal-family{padding-top:18px;border-top:1px solid rgba(255,255,255,.18)}
+      .dual-portal-footer .portal-family-title,.dual-portal-footer .portal-family-title *{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif!important;font-size:15px!important;font-weight:800!important;color:#fff!important;font-style:normal!important;letter-spacing:0!important;text-transform:none!important}
       .dual-portal-footer .portal-family-title{display:block;line-height:1.35;padding-top:9px}
       .dual-portal-footer .portal-country-links{display:flex!important;flex-wrap:wrap!important;gap:9px!important;margin:0!important}
       .dual-portal-footer .portal-country-link{display:inline-flex!important;align-items:center!important;gap:7px!important;min-height:40px;padding:8px 11px!important;border-radius:10px;text-decoration:none}
