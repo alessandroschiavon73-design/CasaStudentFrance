@@ -166,14 +166,29 @@
 
   async function syncRemote(reload=false) {
     const c = await getClient();
-    const [lr, rr] = await Promise.all([
+    const [cr, lr, rr] = await Promise.all([
+      c.from("cities").select("id,slug,name").eq("country_code",cfg.countryCode).eq("active",true),
       c.from("public_listings").select("*").eq("country_code",cfg.countryCode).eq("status","published").order("created_at",{ascending:false}),
       c.from("public_student_requests").select("*").eq("country_code",cfg.countryCode).eq("status","published").order("created_at",{ascending:false})
     ]);
+    if (cr.error) throw cr.error;
     if (lr.error) throw lr.error;
     if (rr.error) throw rr.error;
-    const listings=(lr.data||[]).map(row=>({...parseLegacy(row.description),id:row.id,country_code:row.country_code,city_id:row.city_id,price:Number(row.price||0),currency:row.currency,status:row.status,is_demo:false,_remote:true}));
-    const requests=(rr.data||[]).map(row=>({...parseLegacy(row.description),id:row.id,country_code:row.country_code,city_id:row.city_id,budget_max:Number(row.budget_max||0),currency:row.currency,status:row.status,is_demo:false,_remote:true}));
+    const localCities = window.STUDENTBNB_DATA?.cities || [];
+    const cityByDbId = new Map((cr.data || []).map(dbCity => {
+      const local = localCities.find(city => city.slug === dbCity.slug);
+      return [dbCity.id, local || {id:dbCity.slug,slug:dbCity.slug,name:dbCity.name}];
+    }));
+    const listings=(lr.data||[]).map(row=>{
+      const legacy=parseLegacy(row.description);
+      const city=cityByDbId.get(row.city_id);
+      return {...legacy,id:row.id,country_code:row.country_code,city_id:city?.id || legacy.city_id || row.city_id,city_slug:city?.slug || legacy.city_slug || legacy.citySlug,price:Number(row.price||0),currency:row.currency,status:row.status,is_demo:false,_remote:true};
+    });
+    const requests=(rr.data||[]).map(row=>{
+      const legacy=parseLegacy(row.description);
+      const city=cityByDbId.get(row.city_id);
+      return {...legacy,id:row.id,country_code:row.country_code,city_id:city?.id || legacy.city_id || row.city_id,city_slug:city?.slug || legacy.city_slug || legacy.citySlug,budget_max:Number(row.budget_max||0),currency:row.currency,status:row.status,is_demo:false,_remote:true};
+    });
     const before=JSON.stringify([read("listings",[]),read("student_requests",[])]);
     write("listings",listings); write("student_requests",requests);
     const after=JSON.stringify([listings,requests]);
